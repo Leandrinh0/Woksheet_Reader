@@ -9,7 +9,7 @@ export class ExtractController {
     @Post('read/:readId')
     async uploadFile(
         @Param("readId", new ParseIntPipe({ 
-            exceptionFactory: () => new BadRequestException("O parâmetro readId deve ser um número inteiro válido.") 
+            exceptionFactory: () => new BadRequestException("O parâmetro ID do modelo de tabela deve ser um número inteiro válido.") 
         })) fieldId: number,
         @Req() request: FastifyRequest
     ) {

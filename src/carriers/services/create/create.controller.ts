@@ -8,6 +8,6 @@ export class CreateCarrierController {
 
     @Post('create')
     async execute(@Body() newCarrier: createCarrierDto) {
-        await this.createCarrierService.execute(newCarrier)
+        return await this.createCarrierService.execute(newCarrier)
     }
 }

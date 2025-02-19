@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, InternalServerErrorException, NotFoundException } from "@nestjs/common";
 import * as XLSX from "xlsx";
 import { Readable } from "stream";
 import { FieldsRepository } from "src/fields/models/repository/fields.repository";
@@ -11,6 +11,7 @@ export class ExtractService {
     async execute(file: any, fieldId: number) {
         try {
             const sheetFields: FieldsEntity = await this.fieldsRepository.findFields(fieldId);
+            if (!sheetFields) {throw new NotFoundException("Padrão de tabela não encontrado, por favor envie um ID válido!")}
             const matchColumn = (str: string) => str.match(/^[A-Za-z]+/);
 
             const buffer = await this.streamToBuffer(file.file);
@@ -105,7 +106,7 @@ export class ExtractService {
             });
             return response;
         } catch (error: any) {
-            throw new Error(error)
+            throw new InternalServerErrorException(error)
         }
     }
 

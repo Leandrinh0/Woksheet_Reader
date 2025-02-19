@@ -9,6 +9,6 @@ export class CreateFieldController {
 
     @Post('create')
     async execute(@Body() newField: CreateFieldDto) {
-        await this.createFieldService.execute(newField)
+        return await this.createFieldService.execute(newField)
     }
 }

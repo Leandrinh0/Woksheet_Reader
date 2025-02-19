@@ -10,6 +10,7 @@ export class CreateCarrierService {
     async execute(carrier: createCarrierDto) {
         const newCarrier = new CarriersEntity();
         newCarrier.name = carrier.name
-        await this.carriersRepository.create(newCarrier)
+        const savedCarrier = await this.carriersRepository.create(newCarrier)
+        return { message: `Transportadora salva com sucesso! ID da transportadora: ${savedCarrier}` }
     }
 }

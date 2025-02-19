@@ -17,7 +17,8 @@ export class CarriersRepository implements CarriersRepositoryInterface {
         })
     }
 
-    async create(carrier: CarriersEntity): Promise<void> {
-        await this.carriersRepository.save(carrier)
+    async create(carrier: CarriersEntity): Promise<number> {
+        const savedCarrier = await this.carriersRepository.save(carrier);
+        return savedCarrier.id;
     }
 }

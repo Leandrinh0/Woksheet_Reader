@@ -11,10 +11,11 @@ export class FieldsRepository implements FieldsRepositoryInterface {
         private readonly fieldsRepository: Repository<FieldsEntity>
     ) { }
 
-    async create(newField: FieldsEntity): Promise<void> {
-        await this.fieldsRepository.save(newField);
+    async create(newField: FieldsEntity): Promise<number> {
+        const savedField = await this.fieldsRepository.save(newField);
+        return savedField.id
     }
-    
+
     async findFields(carrierId: number): Promise<FieldsEntity> {
         return await this.fieldsRepository.findOne({
             where: {
