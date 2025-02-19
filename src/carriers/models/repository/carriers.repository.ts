@@ -10,7 +10,13 @@ export class CarriersRepository implements CarriersRepositoryInterface {
         @InjectRepository(CarriersEntity)
         private readonly carriersRepository: Repository<CarriersEntity>
     ) { }
-    
+
+    async findOne(carrierId: number): Promise<CarriersEntity> {
+        return await this.carriersRepository.findOneBy({
+            id: carrierId
+        })
+    }
+
     async create(carrier: CarriersEntity): Promise<void> {
         await this.carriersRepository.save(carrier)
     }

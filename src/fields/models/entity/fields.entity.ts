@@ -12,18 +12,24 @@ export class FieldsEntity {
     @Column({ nullable: false, name: 'nome', type: 'varchar' })
     name: string
 
-    @Column({ nullable: false, name: 'origem_indice', type: 'varchar', length: 8})
+    @Column({ nullable: true, name: 'origem_indice', type: 'varchar', length: 8 })
     originIndex: string
 
-    @Column({ nullable: false, name: 'destino_indice', type: 'varchar', length: 8})
+    @Column({ nullable: true, name: 'destino_indice', type: 'varchar', length: 8 })
     destinationIndex: string
 
-    @Column({ nullable: false, name: 'prazo_indice', type: 'varchar', length: 8})
+    @Column({ nullable: true, name: 'prazo_indice', type: 'varchar', length: 8 })
     deadlineIndex: string
 
-    @Column({ nullable: false, name: 'cep_indice', type: 'varchar', length: 8})
+    @Column({ nullable: true, name: 'cep_indice', type: 'varchar', length: 8 })
     cepIndex: string
-    
+
+    @Column({ nullable: true, name: 'distancia_indice', type: 'varchar', length: 8 })
+    distanceIndex: string
+
+    @Column({ nullable: true, name: 'preco_indice', type: 'varchar', length: 8 })
+    fixPriceIndex: string
+
     @ManyToOne(() => CarriersEntity, (carrier) => carrier.fields, { onDelete: 'CASCADE' })
     @JoinColumn({ referencedColumnName: 'id', name: 'id_transportadora' })
     carrier: CarriersEntity
