@@ -24,7 +24,11 @@ export class CreateFieldService {
         newField.cepIndex = fieldData.cepIndex;
         newField.distanceIndex = fieldData.distanceIndex;
         newField.fixPriceIndex = fieldData.fixPriceIndex;
+        newField.tda = fieldData.tda;
+        newField.trt = fieldData.trt;
+        newField.tde = fieldData.tde;
+        newField.tzr = fieldData.tzr;
         const savedField = await this.fieldsRepository.create(newField);
-        return {message: `Layout salvo com sucesso! ID do layout: ${savedField}`}
+        return { message: `Layout salvo com sucesso! ID do layout: ${savedField}` }
     }
 }

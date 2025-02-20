@@ -105,12 +105,64 @@ export class ExtractService {
                 } return undefined
             }
 
+            const tdaData = () => {
+                if (sheetFields.tda) {
+                    const initialIndex = getInitialCoordinates(sheetFields.tda);
+                    const finalIndex = getFinalCoordinates(sheetFields.tda);
+                    return XLSX.utils.sheet_to_json(sheet, {
+                        range: `${initialIndex}:${finalIndex ? finalIndex : `${getHorizontalCoordinates(sheetFields.tda)}${maxLength + 10}`}`,
+                        header: ["T.D.A"],
+                        blankrows: false
+                    });
+                } return undefined
+            }
+
+            const trtData = () => {
+                if (sheetFields.trt) {
+                    const initialIndex = getInitialCoordinates(sheetFields.trt);
+                    const finalIndex = getFinalCoordinates(sheetFields.trt);
+                    return XLSX.utils.sheet_to_json(sheet, {
+                        range: `${initialIndex}:${finalIndex ? finalIndex : `${getHorizontalCoordinates(sheetFields.trt)}${maxLength + 10}`}`,
+                        header: ["T.R.T"],
+                        blankrows: false
+                    });
+                } return undefined
+            }
+
+            const tdeData = () => {
+                if (sheetFields.tde) {
+                    const initialIndex = getInitialCoordinates(sheetFields.tde);
+                    const finalIndex = getFinalCoordinates(sheetFields.tde);
+                    return XLSX.utils.sheet_to_json(sheet, {
+                        range: `${initialIndex}:${finalIndex ? finalIndex : `${getHorizontalCoordinates(sheetFields.tde)}${maxLength + 10}`}`,
+                        header: ["T.D.E"],
+                        blankrows: false
+                    });
+                } return undefined
+            }
+
+            const tzrData = () => {
+                if (sheetFields.tzr) {
+                    const initialIndex = getInitialCoordinates(sheetFields.tzr);
+                    const finalIndex = getFinalCoordinates(sheetFields.tzr);
+                    return XLSX.utils.sheet_to_json(sheet, {
+                        range: `${initialIndex}:${finalIndex ? finalIndex : `${getHorizontalCoordinates(sheetFields.tzr)}${maxLength + 10}`}`,
+                        header: ["T.Z.R"],
+                        blankrows: false
+                    });
+                } return undefined
+            }
+
             const origin = originData()?.map(obj => Object.values(obj)[0]) ?? [];
             const destination = destinationData()?.map(obj => Object.values(obj)[0]) ?? [];
             const deadline = deadlineData()?.map(obj => Object.values(obj)[0]) ?? [];
             const cep = cepData()?.map(obj => Object.values(obj)[0]) ?? [];
             const distance = distanceData()?.map(obj => Object.values(obj)[0]) ?? [];
             const fixPrice = fixPriceData()?.map(obj => Object.values(obj)[0]) ?? [];
+            const tda = tdaData()?.map(obj => Object.values(obj)[0]) ?? [];
+            const trt = trtData()?.map(obj => Object.values(obj)[0]) ?? [];
+            const tde = tdeData()?.map(obj => Object.values(obj)[0]) ?? [];
+            const tzr = tzrData()?.map(obj => Object.values(obj)[0]) ?? [];
 
             const lengths = [origin, destination, deadline, cep, distance, fixPrice].map(arr => arr.length);
             const length = Math.max(0, ...lengths);
@@ -124,6 +176,10 @@ export class ExtractService {
                 if (cep[i] !== undefined) obj["CEP"] = cep[i];
                 if (distance[i] !== undefined) obj["Distância"] = distance[i];
                 if (fixPrice[i] !== undefined) obj["Preço fixo"] = fixPrice[i];
+                if (tda[i] !== undefined) obj["T.D.A"] = tda[i];
+                if (trt[i] !== undefined) obj["T.R.T"] = trt[i];
+                if (tde[i] !== undefined) obj["T.D.E"] = tde[i];
+                if (tzr[i] !== undefined) obj["T.Z.R"] = tzr[i];
 
                 return obj;
             });
