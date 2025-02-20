@@ -11,8 +11,19 @@ export class ExtractService {
     async execute(file: any, fieldId: number) {
         try {
             const sheetFields: FieldsEntity = await this.fieldsRepository.findFields(fieldId);
-            if (!sheetFields) {throw new NotFoundException("Padrão de tabela não encontrado, por favor envie um ID válido!")}
-            const matchColumn = (str: string) => str.match(/^[A-Za-z]+/);
+            if (!sheetFields) { throw new NotFoundException("Padrão de tabela não encontrado, por favor envie um ID válido!") }
+            const getHorizontalCoordinates = (str: string) => {
+                const match = str.match(/^([A-Z]{1,3})/);
+                return match ? match[1] : null;
+            };
+            const getInitialCoordinates = (str: string) => {
+                const match = str.match(/^([A-Z]{1,3}[1-9][0-9]*)/);
+                return match ? match[1] : null;
+            };
+            const getFinalCoordinates = (str: string) => {
+                const match = str.match(/-([A-Z]{1,3}[1-9][0-9]*)$/);
+                return match ? match[1] : null;
+            };
 
             const buffer = await this.streamToBuffer(file.file);
             const workbook = XLSX.read(buffer, { type: "buffer" });
@@ -24,8 +35,10 @@ export class ExtractService {
 
             const originData = () => {
                 if (sheetFields.originIndex) {
+                    const initialIndex = getInitialCoordinates(sheetFields.originIndex);
+                    const finalIndex = getFinalCoordinates(sheetFields.originIndex);
                     return XLSX.utils.sheet_to_json(sheet, {
-                        range: `${(sheetFields.originIndex).toUpperCase()}:${matchColumn((sheetFields.originIndex).toUpperCase())}${maxLength + 10}`,
+                        range: `${initialIndex}:${finalIndex ? finalIndex : `${getHorizontalCoordinates(sheetFields.originIndex)}${maxLength + 10}`}`,
                         header: ["Cidade Destino"],
                         blankrows: false
                     })
@@ -34,8 +47,10 @@ export class ExtractService {
 
             const destinationData = () => {
                 if (sheetFields.destinationIndex) {
+                    const initialIndex = getInitialCoordinates(sheetFields.destinationIndex);
+                    const finalIndex = getFinalCoordinates(sheetFields.destinationIndex);
                     return XLSX.utils.sheet_to_json(sheet, {
-                        range: `${(sheetFields.destinationIndex).toUpperCase()}:${matchColumn((sheetFields.destinationIndex).toUpperCase())}${maxLength + 10}`,
+                        range: `${initialIndex}:${finalIndex ? finalIndex : `${getHorizontalCoordinates(sheetFields.destinationIndex)}${maxLength + 10}`}`,
                         header: ["Cidade Destino"],
                         blankrows: false
                     });
@@ -44,8 +59,10 @@ export class ExtractService {
 
             const deadlineData = () => {
                 if (sheetFields.deadlineIndex) {
+                    const initialIndex = getInitialCoordinates(sheetFields.deadlineIndex);
+                    const finalIndex = getFinalCoordinates(sheetFields.deadlineIndex);
                     return XLSX.utils.sheet_to_json(sheet, {
-                        range: `${(sheetFields.deadlineIndex).toUpperCase()}:${matchColumn((sheetFields.deadlineIndex).toUpperCase())}${maxLength + 10}`,
+                        range: `${initialIndex}:${finalIndex ? finalIndex : `${getHorizontalCoordinates(sheetFields.deadlineIndex)}${maxLength + 10}`}`,
                         header: ["Prazo em Dias"],
                         blankrows: false
                     });
@@ -54,8 +71,10 @@ export class ExtractService {
 
             const cepData = () => {
                 if (sheetFields.cepIndex) {
+                    const initialIndex = getInitialCoordinates(sheetFields.cepIndex);
+                    const finalIndex = getFinalCoordinates(sheetFields.cepIndex);
                     return XLSX.utils.sheet_to_json(sheet, {
-                        range: `${(sheetFields.cepIndex).toUpperCase()}:${matchColumn((sheetFields.cepIndex).toUpperCase())}${maxLength + 10}`,
+                        range: `${initialIndex}:${finalIndex ? finalIndex : `${getHorizontalCoordinates(sheetFields.cepIndex)}${maxLength + 10}`}`,
                         header: ["CEP"],
                         blankrows: false
                     });
@@ -64,8 +83,10 @@ export class ExtractService {
 
             const distanceData = () => {
                 if (sheetFields.distanceIndex) {
+                    const initialIndex = getInitialCoordinates(sheetFields.distanceIndex);
+                    const finalIndex = getFinalCoordinates(sheetFields.distanceIndex);
                     return XLSX.utils.sheet_to_json(sheet, {
-                        range: `${(sheetFields.distanceIndex).toUpperCase()}:${matchColumn((sheetFields.distanceIndex).toUpperCase())}${maxLength + 10}`,
+                        range: `${initialIndex}:${finalIndex ? finalIndex : `${getHorizontalCoordinates(sheetFields.distanceIndex)}${maxLength + 10}`}`,
                         header: ["Distancia"],
                         blankrows: false
                     });
@@ -74,8 +95,10 @@ export class ExtractService {
 
             const fixPriceData = () => {
                 if (sheetFields.fixPriceIndex) {
+                    const initialIndex = getInitialCoordinates(sheetFields.fixPriceIndex);
+                    const finalIndex = getFinalCoordinates(sheetFields.fixPriceIndex);
                     return XLSX.utils.sheet_to_json(sheet, {
-                        range: `${(sheetFields.fixPriceIndex).toUpperCase()}:${matchColumn((sheetFields.fixPriceIndex).toUpperCase())}${maxLength + 10}`,
+                        range: `${initialIndex}:${finalIndex ? finalIndex : `${getHorizontalCoordinates(sheetFields.fixPriceIndex)}${maxLength + 10}`}`,
                         header: ["CEP"],
                         blankrows: false
                     });
