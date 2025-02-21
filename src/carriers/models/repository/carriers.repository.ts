@@ -11,6 +11,10 @@ export class CarriersRepository implements CarriersRepositoryInterface {
         private readonly carriersRepository: Repository<CarriersEntity>
     ) { }
 
+    async findAll(): Promise<CarriersEntity[]> {
+        return await this.carriersRepository.find()
+    }
+
     async findOne(carrierId: number): Promise<CarriersEntity> {
         return await this.carriersRepository.findOneBy({
             id: carrierId
