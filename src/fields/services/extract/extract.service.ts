@@ -12,6 +12,7 @@ export class ExtractService {
         try {
             const sheetFields: FieldsEntity = await this.fieldsRepository.findFields(fieldId);
             if (!sheetFields) { throw new NotFoundException("Padrão de tabela não encontrado, por favor envie um ID válido!") }
+
             const getHorizontalCoordinates = (str: string) => {
                 const match = str.match(/^([A-Z]{1,3})/);
                 return match ? match[1] : null;

@@ -8,9 +8,15 @@ import multipart from '@fastify/multipart';
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
-    new FastifyAdapter(),
+    new FastifyAdapter({ bodyLimit: 5 * 1024 * 1024 })
   );
-  await app.register(multipart);
+
+  await app.register(multipart, {
+    limits: {
+      fileSize: 5 * 1024 * 1024,
+    },
+  });
+
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(3000);
 }
