@@ -25,21 +25,19 @@ Esta API permite a leitura e formatação de planilhas de fretes, facilitando o 
    ```sh
    npm install
    ```
-
 3. Configure as variáveis de ambiente no arquivo `.env`:
-   ```sh
+   ```env
    LISTEN_PORT =
-
+   
    DB_PORT =
    DB_HOST =
    DB_USERNAME =
    DB_PASSWORD =
    DB_NAME =
    DB_SCHEMA = worksheet
-  ```
+   ```
 
 4. Inicie a aplicação:
-
    ```sh
    npm run start
    ```
