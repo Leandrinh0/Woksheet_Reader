@@ -102,7 +102,8 @@ Esta API permite a leitura e formatação de planilhas de fretes, facilitando o 
 - **tda, trt, tde, tzr**: Outras colunas específicas relacionadas ao frete.
 
 **Os valores devem seguir o padrão **"A2"** (somente a célula inicial) ou **"A2-A10"** (intervalo de células).**
-- Certifique-se de setar uma célula final para busca ("A2-A10") caso haja quebras na planilha como subtítulos
+- Certifique-se de setar uma célula final para busca ("A2-A10") caso haja quebras na planilha como subtítulos;
+- Caso seja setado apenas a célula inicial da coluna a mesma será transcrita até o último item.
 
 ---
 
