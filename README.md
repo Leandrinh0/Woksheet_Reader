@@ -39,7 +39,6 @@ Esta API permite a leitura e formatação de planilhas de fretes, facilitando o 
   ```
 
 4. Inicie a aplicação:
-
    ```sh
    npm run start
    ```
