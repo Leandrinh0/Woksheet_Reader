@@ -1,6 +1,7 @@
 import { FieldsEntity } from "../entity/fields.entity";
 
 export interface FieldsRepositoryInterface {
-    findFields(carrierId: number): Promise<FieldsEntity>
+    findFields(fieldId: number): Promise<FieldsEntity>
     create(newField: FieldsEntity): Promise<number>
+    findCarrierFields(carrierId: number): Promise<FieldsEntity[]>
 }
