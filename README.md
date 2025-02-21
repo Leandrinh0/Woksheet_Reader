@@ -61,8 +61,8 @@ Esta API permite a leitura e formatação de planilhas de fretes, facilitando o 
 
 ```json
 {
-    "id": 1,
-    "name": "Carrier Name Example"
+    "id": "number",
+    "name": "string"
 }
 ```
 
@@ -148,6 +148,35 @@ curl -X POST -F "file=@planilha.xlsx" http://localhost:3000/fields/read/1
           "T.D.E": "-",
           "T.Z.R": "-"
       }
+}
+```
+
+## Demais Endpoints
+
+### 1. Buscar padrões de leitura cadastrados para a transportadora
+
+**Rota:** `Get /fields/find/:carrierId`
+
+**Parâmetro:**
+
+- `carrierId`: ID da transportadora previamente cadastrada.
+
+**Resposta Esperada:**
+
+```json
+{
+    "id": "number",
+    "name": "string",
+    "originIndex": "string",
+    "destinationIndex": "string",
+    "deadlineIndex": "string",
+    "cepIndex": "string",
+    "distanceIndex": "string",
+    "fixPriceIndex": "string",
+    "tda": "string",
+    "trt": "string",
+    "tde": "string",
+    "tzr": "string"
 }
 ```
 
