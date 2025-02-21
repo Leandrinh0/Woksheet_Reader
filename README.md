@@ -6,7 +6,7 @@ Esta API permite a leitura e formatação de planilhas de fretes, facilitando o 
 
 ## Tecnologias Utilizadas
 
-- **NestJS** (com Fastify)
+- **NestJS**
 - **Fastify Multipart** para upload de arquivos
 - **xlsx** para manipulação de planilhas
 - **TypeScript**
