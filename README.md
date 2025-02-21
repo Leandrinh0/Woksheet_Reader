@@ -10,6 +10,7 @@ Esta API permite a leitura e formatação de planilhas de fretes, facilitando o 
 - **Fastify Multipart** para upload de arquivos
 - **xlsx** para manipulação de planilhas
 - **TypeScript**
+- **PostgreSQL**
 
 ## Instalação e Execução
 
