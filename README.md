@@ -125,7 +125,7 @@ curl -X POST -F "file=@planilha.xlsx" http://localhost:3000/fields/read/1
 
 **Resposta Esperada:**
 
-```json
+```array
 {
       {
           "Cidade Destino": "-",
