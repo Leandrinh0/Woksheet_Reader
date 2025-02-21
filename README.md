@@ -27,15 +27,15 @@ Esta API permite a leitura e formatação de planilhas de fretes, facilitando o 
    ```
 
 3. Configure as variáveis de ambiente no arquivo `.env`:
-  ```sh
-  LISTEN_PORT =
+   ```sh
+   LISTEN_PORT =
 
-  DB_PORT =
-  DB_HOST =
-  DB_USERNAME =
-  DB_PASSWORD =
-  DB_NAME =
-  DB_SCHEMA =
+   DB_PORT =
+   DB_HOST =
+   DB_USERNAME =
+   DB_PASSWORD =
+   DB_NAME =
+   DB_SCHEMA =
   ```
 
 4. Inicie a aplicação:
