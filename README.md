@@ -159,6 +159,7 @@ curl -X POST -F "file=@planilha.xlsx" http://localhost:3000/fields/read/1
 - Certifique-se de cadastrar um **carrier** antes de criar um **padrão de leitura**.
 - Verifique se os índices das colunas estão corretos.
 - Certifique-se de setar uma célula final para busca ("A2-A10") caso haja quebras na planilha como subtítulos.
+- Somente os itens especificados no payload ao criar um padrão de leitura de planilha serão retornados.
 
 ---
 
