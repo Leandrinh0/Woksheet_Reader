@@ -27,16 +27,16 @@ Esta API permite a leitura e formatação de planilhas de fretes, facilitando o 
    ```
 
 3. Configure as variáveis de ambiente no arquivo `.env`:
-```sh
-LISTEN_PORT =
+  ```sh
+  LISTEN_PORT =
 
-DB_PORT =
-DB_HOST =
-DB_USERNAME =
-DB_PASSWORD =
-DB_NAME =
-DB_SCHEMA =
-```
+  DB_PORT =
+  DB_HOST =
+  DB_USERNAME =
+  DB_PASSWORD =
+  DB_NAME =
+  DB_SCHEMA =
+  ```
 
 4. Inicie a aplicação:
 
@@ -127,11 +127,28 @@ curl -X POST -F "file=@planilha.xlsx" http://localhost:3000/fields/read/1
 
 ```json
 {
-    "status": "success",
-    "data": [
-        { "cidade_destino": "São Paulo", "prazo": "2 dias", "preço": "R$ 150,00" },
-        { "cidade_destino": "Rio de Janeiro", "prazo": "3 dias", "preço": "R$ 200,00" }
-    ]
+      {
+          "Cidade Destino": "-",
+          "Prazo em Dias": "-",
+          "CEP": "-",
+          "Distância": "-",
+          "Preço fixo": "-",
+          "T.D.A": "-",
+          "T.R.T": "-",
+          "T.D.E": "-",
+          "T.Z.R": "-"
+      },
+      {
+          "Cidade Destino": "-",
+          "Prazo em Dias": "-",
+          "CEP": "-",
+          "Distância": "-",
+          "Preço fixo": "-",
+          "T.D.A": "-",
+          "T.R.T": "-",
+          "T.D.E": "-",
+          "T.Z.R": "-"
+      }
 }
 ```
 

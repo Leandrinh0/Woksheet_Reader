@@ -11,6 +11,6 @@ export class CreateCarrierService {
         const newCarrier = new CarriersEntity();
         newCarrier.name = carrier.name
         const savedCarrier = await this.carriersRepository.create(newCarrier)
-        return { message: `Transportadora salva com sucesso! ID da transportadora: ${savedCarrier}` }
+        return savedCarrier
     }
 }
