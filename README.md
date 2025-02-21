@@ -101,7 +101,8 @@ Esta API permite a leitura e formatação de planilhas de fretes, facilitando o 
 - **fixPriceIndex**: Coluna do valor fixo do frete.
 - **tda, trt, tde, tzr**: Outras colunas específicas relacionadas ao frete.
 
-Os valores devem seguir o padrão **"A2"** (somente a célula inicial) ou **"A2-A10"** (intervalo de células).
+**Os valores devem seguir o padrão **"A2"** (somente a célula inicial) ou **"A2-A10"** (intervalo de células).**
+- Certifique-se de setar uma célula final para busca ("A2-A10") caso haja quebras na planilha como subtítulos
 
 ---
 
@@ -177,6 +178,19 @@ curl -X POST -F "file=@planilha.xlsx" http://localhost:3000/fields/read/1
     "trt": "string",
     "tde": "string",
     "tzr": "string"
+}
+```
+
+### 2. Buscar Transportadoras Cadastradas
+
+**Rota:** `Get /carriers/findAll`
+
+**Resposta Esperada:**
+
+```json
+{
+    "id": "number",
+    "name": "string"
 }
 ```
 
