@@ -26,7 +26,17 @@ Esta API permite a leitura e formatação de planilhas de fretes, facilitando o 
    npm install
    ```
 
-3. Configure as variáveis de ambiente no arquivo `.env`.
+3. Configure as variáveis de ambiente no arquivo `.env`:
+```sh
+LISTEN_PORT =
+
+DB_PORT =
+DB_HOST =
+DB_USERNAME =
+DB_PASSWORD =
+DB_NAME =
+DB_SCHEMA =
+```
 
 4. Inicie a aplicação:
 
@@ -130,10 +140,10 @@ curl -X POST -F "file=@planilha.xlsx" http://localhost:3000/fields/read/1
 ## Considerações Finais
 
 - Certifique-se de cadastrar um **carrier** antes de criar um **padrão de leitura**.
-- Verifique se os índices das colunas seguem o formato correto.
-- Para maiores detalhes, consulte a documentação completa da API.
+- Verifique se os índices das colunas estão corretos.
+- Certifique-se de setar uma célula final para busca ("A2-A10") caso haja quebras na planilha como subtítulos.
 
 ---
 
-**Desenvolvido por [Seu Nome]** 🚀
+**Desenvolvido por Leandro Mello** 🚀
 

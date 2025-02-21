@@ -1,9 +1,11 @@
-import "dotenv/config";
+import * as dotenv from 'dotenv'
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 import multipart from '@fastify/multipart';
+
+dotenv.config()
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -18,6 +20,9 @@ async function bootstrap() {
   });
 
   app.useGlobalPipes(new ValidationPipe());
-  await app.listen(3000);
+
+  const port: number = parseInt(process.env.LISTEN_PORT) || 3000
+
+  await app.listen(port);
 }
 bootstrap();
