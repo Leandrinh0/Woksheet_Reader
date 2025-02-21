@@ -16,8 +16,8 @@ Esta API permite a leitura e formatação de planilhas de fretes, facilitando o 
 1. Clone o repositório:
 
    ```sh
-   git clone https://github.com/seu-repositorio.git
-   cd seu-repositorio
+   git clone https://github.com/Leandrinh0/Woksheet_Reader.git
+   cd Woksheet_Reader
    ```
 
 2. Instale as dependências:
@@ -125,7 +125,7 @@ curl -X POST -F "file=@planilha.xlsx" http://localhost:3000/fields/read/1
 
 **Resposta Esperada:**
 
-```array
+```json
 {
       {
           "Cidade Destino": "-",
