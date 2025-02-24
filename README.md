@@ -195,6 +195,27 @@ curl -X POST -F "file=@planilha.xlsx" http://localhost:3000/fields/read/1
 }
 ```
 
+### 3. Excluir Transportadora
+
+**Rota:** `Delete /carriers/delete/:carrierId`
+
+**Parâmetro:**
+
+- `carrierId`: ID da transportadora previamente cadastrada.
+
+**Observação:**
+
+- Padrões de leitura pertencentes a transportadora também serão excluídos
+  
+
+### 3. Excluir Padrão de Leitura
+
+**Rota:** `Delete /fields/delete/:fieldId`
+
+**Parâmetro:**
+
+- `fieldId`: ID do padrão de leitura previamente cadastrado.
+
 ---
 
 ## Considerações Finais
