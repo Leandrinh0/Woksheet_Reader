@@ -208,7 +208,7 @@ curl -X POST -F "file=@planilha.xlsx" http://localhost:3000/fields/read/1
 - Padrões de leitura pertencentes a transportadora também serão excluídos
   
 
-### 3. Excluir Padrão de Leitura
+### 4. Excluir Padrão de Leitura
 
 **Rota:** `Delete /fields/delete/:fieldId`
 
