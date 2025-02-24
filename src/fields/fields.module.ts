@@ -10,12 +10,14 @@ import { CarriersRepository } from "src/carriers/models/repository/carriers.repo
 import { CarriersEntity } from "src/carriers/models/entity/carriers-entity";
 import { FindFieldsService } from "./services/find/find.service";
 import { FindFieldsController } from "./services/find/find.controller";
+import { DeleteFieldService } from "./services/delete/delete.service";
+import { DeleteFieldController } from "./services/delete/delete.controller";
 
 @Module({
     imports: [
         TypeOrmModule.forFeature([FieldsEntity, CarriersEntity]),
     ],
-    providers: [ExtractService, FieldsRepository, CreateFieldService, CarriersRepository, FindFieldsService],
-    controllers: [ExtractController, CreateFieldController, FindFieldsController]
+    providers: [ExtractService, FieldsRepository, CreateFieldService, CarriersRepository, FindFieldsService, DeleteFieldService],
+    controllers: [ExtractController, CreateFieldController, FindFieldsController, DeleteFieldController]
 })
 export class FieldsModule { }
