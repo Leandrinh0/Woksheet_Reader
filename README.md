@@ -81,13 +81,14 @@ Esta API permite a leitura e formatação de planilhas de fretes, facilitando o 
     "originIndex": "A2",
     "destinationIndex": "B2",
     "deadlineIndex": "C2",
-    "cepIndex": "D2",
-    "distanceIndex": "E2",
-    "fixPriceIndex": "F2",
-    "tda": "G2",
-    "trt": "H2",
-    "tde": "I2",
-    "tzr": "J2"
+    "originCepIndex": "D2",
+    "destinationCepIndex": "E2"
+    "distanceIndex": "F2",
+    "fixPriceIndex": "G2",
+    "tda": "H2",
+    "trt": "I2",
+    "tde": "J2",
+    "tzr": "K2"
 }
 ```
 
@@ -96,7 +97,8 @@ Esta API permite a leitura e formatação de planilhas de fretes, facilitando o 
 - **originIndex**: Coluna da cidade de origem do frete.
 - **destinationIndex**: Coluna da cidade de destino do frete.
 - **deadlineIndex**: Coluna do prazo do frete.
-- **cepIndex**: Coluna do CEP do frete.
+- **originCepIndex**: Coluna do CEP da origem.
+- **destinationCepIndex**: Coluna do CEP do destino.
 - **distanceIndex**: Coluna da distância do frete.
 - **fixPriceIndex**: Coluna do valor fixo do frete.
 - **tda, trt, tde, tzr**: Outras colunas específicas relacionadas ao frete.
