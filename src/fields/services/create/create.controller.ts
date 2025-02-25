@@ -1,6 +1,5 @@
 import { Body, Controller, Post } from "@nestjs/common";
 import { CreateFieldService } from "./create.service";
-import { FieldsEntity } from "src/fields/models/entity/fields.entity";
 import { CreateFieldDto } from "src/fields/models/dtos/create.dto";
 
 @Controller('fields')

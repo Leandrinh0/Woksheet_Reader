@@ -21,7 +21,8 @@ export class CreateFieldService {
         newField.originIndex = fieldData.originIndex;
         newField.destinationIndex = fieldData.destinationIndex;
         newField.deadlineIndex = fieldData.deadlineIndex;
-        newField.cepIndex = fieldData.cepIndex;
+        newField.originCepIndex = fieldData.originCepIndex;
+        newField.destinationCepIndex = fieldData.destinationCepIndex;
         newField.distanceIndex = fieldData.distanceIndex;
         newField.fixPriceIndex = fieldData.fixPriceIndex;
         newField.tda = fieldData.tda;

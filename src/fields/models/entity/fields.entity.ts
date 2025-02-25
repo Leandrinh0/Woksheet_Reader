@@ -21,8 +21,11 @@ export class FieldsEntity {
     @Column({ nullable: true, name: 'prazo_indice', type: 'varchar', length: 8 })
     deadlineIndex: string
 
-    @Column({ nullable: true, name: 'cep_indice', type: 'varchar', length: 8 })
-    cepIndex: string
+    @Column({ nullable: true, name: 'cep_origem_indice', type: 'varchar', length: 8 })
+    originCepIndex: string
+
+    @Column({ nullable: true, name: 'cep_destino_indice', type: 'varchar', length: 8 })
+    destinationCepIndex: string
 
     @Column({ nullable: true, name: 'distancia_indice', type: 'varchar', length: 8 })
     distanceIndex: string

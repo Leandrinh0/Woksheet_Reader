@@ -29,8 +29,13 @@ export class CreateFieldDto {
 
     @IsOptional()
     @IsString()
-    @IsSpreadsheetCoordinate({ message: 'O valor de "cepIndex" deve ser uma coordenada válida de planilha, podendo ser apenas a coordenada inicial ou também a inicial junto com a final. (ex: A1 ou A1-A10)' })
-    cepIndex: string
+    @IsSpreadsheetCoordinate({ message: 'O valor de "originCepIndex" deve ser uma coordenada válida de planilha, podendo ser apenas a coordenada inicial ou também a inicial junto com a final. (ex: A1 ou A1-A10)' })
+    originCepIndex: string
+
+    @IsOptional()
+    @IsString()
+    @IsSpreadsheetCoordinate({ message: 'O valor de "destinationCepIndex" deve ser uma coordenada válida de planilha, podendo ser apenas a coordenada inicial ou também a inicial junto com a final. (ex: A1 ou A1-A10)' })
+    destinationCepIndex: string
 
     @IsOptional()
     @IsString()
