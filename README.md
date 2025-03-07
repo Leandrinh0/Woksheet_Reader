@@ -34,8 +34,8 @@ Esta API permite a leitura e formatação de planilhas de fretes, facilitando o 
    DB_HOST =
    DB_USERNAME =
    DB_PASSWORD =
-   DB_NAME = worksheet
-   DB_SCHEMA = worksheet
+   DB_NAME = 
+   DB_SCHEMA = 
    ```
 
 4. Inicie a aplicação:

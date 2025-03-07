@@ -3,7 +3,7 @@ import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "t
 
 @Entity({
     name: 'campos',
-    schema: 'worksheet'
+    schema: process.env.LISTEN_PORT
 })
 export class FieldsEntity {
     @PrimaryGeneratedColumn()
