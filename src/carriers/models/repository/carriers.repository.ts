@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { CarriersRepositoryInterface } from "../interfaces/carriers-repository.interface";
-import { CarriersEntity } from "../entity/carriers-entity";
+import { CarriersEntity } from "../entity/carriers.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { DeleteResult, Repository } from "typeorm";
 

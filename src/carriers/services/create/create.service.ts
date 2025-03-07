@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { createCarrierDto } from "src/carriers/models/dtos/create.dto";
-import { CarriersEntity } from "src/carriers/models/entity/carriers-entity";
+import { CarriersEntity } from "src/carriers/models/entity/carriers.entity";
 import { CarriersRepository } from "src/carriers/models/repository/carriers.repository";
 
 @Injectable()

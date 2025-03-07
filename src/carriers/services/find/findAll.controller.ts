@@ -1,6 +1,6 @@
 import { Controller, Get } from "@nestjs/common";
 import { FindAllCarriersService } from "./findAll.service";
-import { CarriersEntity } from "src/carriers/models/entity/carriers-entity";
+import { CarriersEntity } from "src/carriers/models/entity/carriers.entity";
 
 @Controller('carriers')
 export class FindAllCarriersController {

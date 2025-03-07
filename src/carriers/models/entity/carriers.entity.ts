@@ -1,9 +1,9 @@
-import { FieldsEntity } from "src/fields/models/entity/fields.entity";
+import { ReadingPatternEntity } from "src/reading-pattern/models/entities/reading-pattern.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({
     name: 'transportadoras',
-    schema: process.env.LISTEN_PORT
+    schema: process.env.DB_SCHEMA
 })
 export class CarriersEntity {
     @PrimaryGeneratedColumn()
@@ -12,6 +12,7 @@ export class CarriersEntity {
     @Column({ nullable: false, name: 'nome', type: 'varchar' })
     name: string
 
-    @OneToMany(() => FieldsEntity, (field) => field.carrier)
-    fields: FieldsEntity[]
+    @OneToMany(() => ReadingPatternEntity, (readingPattern) => readingPattern.carrier)
+    readingPatterns: ReadingPatternEntity[]
+
 }

@@ -1,5 +1,5 @@
 import { Module } from "@nestjs/common";
-import { CarriersEntity } from "./models/entity/carriers-entity";
+import { CarriersEntity } from "./models/entity/carriers.entity";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { CarriersRepository } from "./models/repository/carriers.repository";
 import { CreateCarrierService } from "./services/create/create.service";

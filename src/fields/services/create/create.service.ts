@@ -17,19 +17,7 @@ export class CreateFieldService {
 
         const newField = new FieldsEntity();
         newField.name = fieldData.name;
-        newField.carrier = selectedCarrier;
-        newField.originIndex = fieldData.originIndex;
-        newField.destinationIndex = fieldData.destinationIndex;
-        newField.deadlineIndex = fieldData.deadlineIndex;
-        newField.originCepIndex = fieldData.originCepIndex;
-        newField.destinationCepIndex = fieldData.destinationCepIndex;
-        newField.distanceIndex = fieldData.distanceIndex;
-        newField.fixPriceIndex = fieldData.fixPriceIndex;
-        newField.tda = fieldData.tda;
-        newField.trt = fieldData.trt;
-        newField.tde = fieldData.tde;
-        newField.tzr = fieldData.tzr;
         const savedField = await this.fieldsRepository.create(newField);
-        return { message: `Layout salvo com sucesso! ID do layout: ${savedField}` }
+        return { message: `Campo salvo com sucesso!: ${savedField}` }
     }
 }

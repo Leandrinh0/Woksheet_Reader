@@ -6,8 +6,8 @@ export class DeleteFieldService {
     constructor(private readonly fieldsRepository: FieldsRepository) { }
 
     async execute(fieldId: number) {
-        const deleteResult = await this.fieldsRepository.deleteCarrierField(fieldId);
-        if (deleteResult.affected === 0) { throw new NotFoundException("Padrão de leitura não encontrado!") };
-        return { message: "Padrão de leitura excluído com sucesso!" }
+        const deleteResult = await this.fieldsRepository.deleteField(fieldId);
+        if (deleteResult.affected === 0) { throw new NotFoundException("Campo não encontrado!") };
+        return { message: "Campo excluído com sucesso!" }
     }
 }

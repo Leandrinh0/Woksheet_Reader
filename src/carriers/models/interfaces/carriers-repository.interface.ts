@@ -1,4 +1,4 @@
-import { CarriersEntity } from "../entity/carriers-entity";
+import { CarriersEntity } from "../entity/carriers.entity";
 import { DeleteResult } from 'typeorm'
 
 export interface CarriersRepositoryInterface {

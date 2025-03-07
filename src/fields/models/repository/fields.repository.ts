@@ -11,12 +11,8 @@ export class FieldsRepository implements FieldsRepositoryInterface {
         private readonly fieldsRepository: Repository<FieldsEntity>
     ) { }
 
-    async deleteCarrierField(fieldId: number): Promise<DeleteResult> {
+    async deleteField(fieldId: number): Promise<DeleteResult> {
         return await this.fieldsRepository.delete({ id: fieldId })
-    }
-
-    async findCarrierFields(carrierId: number): Promise<FieldsEntity[]> {
-        return await this.fieldsRepository.find({ where: { carrier: { id: carrierId } } })
     }
 
     async create(newField: FieldsEntity): Promise<number> {

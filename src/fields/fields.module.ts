@@ -7,9 +7,7 @@ import { FieldsRepository } from "./models/repository/fields.repository";
 import { CreateFieldController } from "./services/create/create.controller";
 import { CreateFieldService } from "./services/create/create.service";
 import { CarriersRepository } from "src/carriers/models/repository/carriers.repository";
-import { CarriersEntity } from "src/carriers/models/entity/carriers-entity";
-import { FindFieldsService } from "./services/find/find.service";
-import { FindFieldsController } from "./services/find/find.controller";
+import { CarriersEntity } from "src/carriers/models/entity/carriers.entity";
 import { DeleteFieldService } from "./services/delete/delete.service";
 import { DeleteFieldController } from "./services/delete/delete.controller";
 
@@ -17,7 +15,7 @@ import { DeleteFieldController } from "./services/delete/delete.controller";
     imports: [
         TypeOrmModule.forFeature([FieldsEntity, CarriersEntity]),
     ],
-    providers: [ExtractService, FieldsRepository, CreateFieldService, CarriersRepository, FindFieldsService, DeleteFieldService],
-    controllers: [ExtractController, CreateFieldController, FindFieldsController, DeleteFieldController]
+    providers: [ExtractService, FieldsRepository, CreateFieldService, CarriersRepository, DeleteFieldService],
+    controllers: [ExtractController, CreateFieldController, DeleteFieldController]
 })
 export class FieldsModule { }
