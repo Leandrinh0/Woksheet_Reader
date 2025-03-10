@@ -8,12 +8,14 @@ import { FindAllCarriersService } from "./services/find/findAll.service";
 import { FindAllCarriersController } from "./services/find/findAll.controller";
 import { DeleteCarrierService } from "./services/delete/delete.service";
 import { DeleteCarrierController } from "./services/delete/delete.controller";
+import { FindCarrierByIdService } from "./services/findById/findById.service";
 
 @Module({
     imports: [
         TypeOrmModule.forFeature([CarriersEntity]),
     ],
-    providers: [CarriersRepository, CreateCarrierService, FindAllCarriersService, DeleteCarrierService],
-    controllers: [CreateCarrierController, FindAllCarriersController, DeleteCarrierController]
+    providers: [CarriersRepository, CreateCarrierService, FindAllCarriersService, DeleteCarrierService, FindCarrierByIdService],
+    controllers: [CreateCarrierController, FindAllCarriersController, DeleteCarrierController],
+    exports: [FindCarrierByIdService]
 })
 export class CarriersModule { }

@@ -5,7 +5,7 @@ import { DataBaseConfig } from './configs/typeorm.config';
 import { CarriersModule } from './carriers/carriers.module';
 import { FieldsModule } from './fields/fields.module';
 import { ReadingPatternModule } from './reading-pattern/reading-pattern.module';
-import { FieldsValuesModule } from './fields-values/fileds-values.module';
+import { FieldsValuesModule } from './fields-values/fields-values.module';
 
 @Module({
   imports: [

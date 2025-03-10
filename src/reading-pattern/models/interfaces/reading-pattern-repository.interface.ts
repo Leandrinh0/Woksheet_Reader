@@ -1,4 +1,3 @@
-import { CreateReadingPatternDto } from "../dtos/create.dto";
 import { ReadingPatternEntity } from "../entities/reading-pattern.entity";
 
 export interface ReadingPatternRepositoryInterface {

@@ -1,4 +1,4 @@
-import { Module } from "@nestjs/common";
+import { forwardRef, Module } from "@nestjs/common";
 import { FieldsEntity } from "./models/entity/fields.entity";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ExtractService } from "./services/extract/extract.service";
@@ -10,12 +10,17 @@ import { CarriersRepository } from "src/carriers/models/repository/carriers.repo
 import { CarriersEntity } from "src/carriers/models/entity/carriers.entity";
 import { DeleteFieldService } from "./services/delete/delete.service";
 import { DeleteFieldController } from "./services/delete/delete.controller";
+import { FieldsValuesModule } from "src/fields-values/fields-values.module";
+import { FindFieldByIdService } from "./services/findById/findOne.service";
+import { findFieldsByNameService } from "./services/findByName/findByNames.service";
 
 @Module({
     imports: [
         TypeOrmModule.forFeature([FieldsEntity, CarriersEntity]),
+        forwardRef(() => FieldsValuesModule)
     ],
-    providers: [ExtractService, FieldsRepository, CreateFieldService, CarriersRepository, DeleteFieldService],
-    controllers: [ExtractController, CreateFieldController, DeleteFieldController]
+    providers: [ExtractService, FieldsRepository, CreateFieldService, CarriersRepository, DeleteFieldService, FindFieldByIdService, findFieldsByNameService, CreateFieldService],
+    controllers: [ExtractController, CreateFieldController, DeleteFieldController],
+    exports: [findFieldsByNameService, CreateFieldService]
 })
 export class FieldsModule { }

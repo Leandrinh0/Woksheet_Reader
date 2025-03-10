@@ -2,11 +2,14 @@ import { Injectable, InternalServerErrorException, NotFoundException } from "@ne
 import * as XLSX from "xlsx";
 import { Readable } from "stream";
 import { FieldsRepository } from "src/fields/models/repository/fields.repository";
-import { FieldsEntity } from "src/fields/models/entity/fields.entity";
+import { FindPatternValuesService } from "src/fields-values/services/find-patter-values/find.service";
 
 @Injectable()
 export class ExtractService {
-    constructor(private readonly fieldsRepository: FieldsRepository) { }
+    constructor(
+        private readonly fieldsRepository: FieldsRepository,
+        private readonly findPatternValues: FindPatternValuesService
+    ) { }
 
     private extractCoordinates(str: string, pattern: RegExp): string | null {
         const match = str.match(pattern);
@@ -38,6 +41,12 @@ export class ExtractService {
     }
 
     async execute(file: any, readingPatternId: number) {
+        try {
+            const sheetFields = await this.findPatternValues.execute(readingPatternId);
+            console.log(sheetFields)
+        } catch (error: any) {
+            throw new InternalServerErrorException(error);
+        }
         // try {
         //     const sheetFields: FieldsEntity = await this.fieldsRepository.findFields(fieldId);
         //     if (!sheetFields) {

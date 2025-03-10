@@ -12,7 +12,7 @@ export class FieldsvaluesEntity {
     id: number
 
     @Column({ nullable: false, name: 'valor', type: 'varchar' })
-    name: string
+    value: string
 
     @ManyToOne(() => FieldsEntity, (field) => field.fieldValues)
     @JoinColumn({ name: 'id_campos', referencedColumnName: 'id' })
