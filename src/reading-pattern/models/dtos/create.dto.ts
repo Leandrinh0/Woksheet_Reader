@@ -1,14 +1,16 @@
 import { Type } from "class-transformer";
 import { ArrayMinSize, IsArray, IsNotEmpty, IsNumber, IsString, ValidateNested } from "class-validator";
+import { IsSpreadsheetCoordinate } from "src/shared/validations/coordinates.validation";
 
 class Field {
     @IsNotEmpty()
     @IsString()
-    fieldName: string
+    columnName: string
 
     @IsNotEmpty()
     @IsString()
-    value: string
+    @IsSpreadsheetCoordinate()
+    index: string
 }
 
 export class CreateReadingPatternDto {

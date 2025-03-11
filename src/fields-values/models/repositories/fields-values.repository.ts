@@ -24,10 +24,10 @@ export class FieldsValuesRepository implements FieldsValuesRepositoryInterface {
     async findPatternValues(readingPatternId: number) {
         return await this.fieldsValuesRepository.query(`
             SELECT 
-            c.nome AS nome, 
-            cv.valor AS valor 
+            c.nome AS key, 
+            cv.valor AS index 
             FROM ${process.env.DB_SCHEMA}.campos_valor cv 
-            INNER JOIN ${process.env.DB_SCHEMA}.campos c ON c.id = cv.id 
+            INNER JOIN ${process.env.DB_SCHEMA}.campos c ON c.id = cv.id_campos 
             WHERE cv.id_padrao_leitura = $1 
             `, [readingPatternId])
     }

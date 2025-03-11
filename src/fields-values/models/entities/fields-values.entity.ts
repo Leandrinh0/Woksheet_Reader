@@ -14,11 +14,11 @@ export class FieldsvaluesEntity {
     @Column({ nullable: false, name: 'valor', type: 'varchar' })
     value: string
 
-    @ManyToOne(() => FieldsEntity, (field) => field.fieldValues)
+    @ManyToOne(() => FieldsEntity, (field) => field.fieldValues, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'id_campos', referencedColumnName: 'id' })
     field: FieldsEntity
 
-    @ManyToOne(() => ReadingPatternEntity, (readingPattern) => readingPattern.fieldsValues)
+    @ManyToOne(() => ReadingPatternEntity, (readingPattern) => readingPattern.fieldsValues, { onDelete: 'CASCADE' })
     @JoinColumn({ name: "id_padrao_leitura", referencedColumnName: 'id' })
     readingPattern: ReadingPatternEntity
 }

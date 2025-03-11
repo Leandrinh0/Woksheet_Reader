@@ -13,11 +13,11 @@ export class ReadingPatternEntity {
     @Column({ nullable: false, name: 'nome', type: 'varchar' })
     name: string
 
-    @ManyToOne(() => CarriersEntity, (carrier) => carrier.readingPatterns)
+    @ManyToOne(() => CarriersEntity, (carrier) => carrier.readingPatterns, { onDelete: 'CASCADE' })
     @JoinColumn({ name: "id_transportadoras", referencedColumnName: 'id' })
     carrier: CarriersEntity
 
-    @OneToMany(() => FieldsvaluesEntity, (value) => value.readingPattern)
+    @OneToMany(() => FieldsvaluesEntity, (value) => value.readingPattern, { onDelete: 'CASCADE' })
     fieldsValues: FieldsvaluesEntity[]
 
 }

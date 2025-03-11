@@ -12,6 +12,6 @@ export class FieldsEntity {
     @Column({ name: "nome", type: "character varying", nullable: false })
     name: string
 
-    @OneToMany(() => FieldsvaluesEntity, (value) => value.field)
+    @OneToMany(() => FieldsvaluesEntity, (value) => value.field, { onDelete: 'CASCADE' })
     fieldValues: FieldsvaluesEntity[]
 }

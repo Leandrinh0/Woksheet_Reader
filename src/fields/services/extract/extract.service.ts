@@ -1,14 +1,15 @@
 import { Injectable, InternalServerErrorException, NotFoundException } from "@nestjs/common";
 import * as XLSX from "xlsx";
 import { Readable } from "stream";
-import { FieldsRepository } from "src/fields/models/repository/fields.repository";
 import { FindPatternValuesService } from "src/fields-values/services/find-patter-values/find.service";
+import { FindPatternByIdService } from "src/reading-pattern/services/findById/findById.service";
+import { ReadingPatternEntity } from "src/reading-pattern/models/entities/reading-pattern.entity";
 
 @Injectable()
 export class ExtractService {
     constructor(
-        private readonly fieldsRepository: FieldsRepository,
-        private readonly findPatternValues: FindPatternValuesService
+        private readonly findPatternValues: FindPatternValuesService,
+        private readonly findReadingPattern: FindPatternByIdService
     ) { }
 
     private extractCoordinates(str: string, pattern: RegExp): string | null {
@@ -42,58 +43,41 @@ export class ExtractService {
 
     async execute(file: any, readingPatternId: number) {
         try {
-            const sheetFields = await this.findPatternValues.execute(readingPatternId);
-            console.log(sheetFields)
+            // Buscar padrão de leitura
+            const readingPattern: ReadingPatternEntity = await this.findReadingPattern.execute(readingPatternId);
+            if (!readingPattern) { throw new NotFoundException("Padrão de leitura não encontrado!") }
+
+            // Dados campos
+            const fieldsMap = await this.findPatternValues.execute(readingPatternId);
+
+            // Planilha
+            const buffer = await this.streamToBuffer(file.file);
+            const workbook = XLSX.read(buffer, { type: "buffer" });
+            const sheetName = workbook.SheetNames[0];
+            const sheet = workbook.Sheets[sheetName];
+            const maxLength = XLSX.utils.sheet_to_json(sheet).length;
+
+            // Extrair dados
+            const extractedData = fieldsMap.map(({ key, index }) => ({
+                key,
+                values: this.extractData(sheet, index, key, maxLength)?.map(obj => Object.values(obj)[0]) ?? []
+            }));
+
+            const length = Math.max(0, ...extractedData.map(({ values }) => values.length));
+
+            const response = Array.from({ length }, (_, i) => {
+                const obj: Record<string, any> = {};
+                extractedData.forEach(({ key, values }) => {
+                    if (values[i] !== undefined) obj[key] = values[i];
+                });
+                return obj;
+            });
+
+            return response;
+
         } catch (error: any) {
             throw new InternalServerErrorException(error);
         }
-        // try {
-        //     const sheetFields: FieldsEntity = await this.fieldsRepository.findFields(fieldId);
-        //     if (!sheetFields) {
-        //         throw new NotFoundException("Padrão de tabela não encontrado, por favor envie um ID válido!");
-        //     }
-
-        //     const buffer = await this.streamToBuffer(file.file);
-        //     const workbook = XLSX.read(buffer, { type: "buffer" });
-
-        //     const sheetName = workbook.SheetNames[0];
-        //     const sheet = workbook.Sheets[sheetName];
-
-        //     const maxLength = XLSX.utils.sheet_to_json(sheet).length;
-
-        //     const fieldsMap = [
-        //         { key: "Cidade Origem", index: sheetFields.originIndex },
-        //         { key: "Cidade Destino", index: sheetFields.destinationIndex },
-        //         { key: "Prazo em Dias", index: sheetFields.deadlineIndex },
-        //         { key: "CEP Origem", index: sheetFields.originCepIndex },
-        //         { key: "CEP Destino", index: sheetFields.destinationCepIndex },
-        //         { key: "Distância", index: sheetFields.distanceIndex },
-        //         { key: "Preço fixo", index: sheetFields.fixPriceIndex },
-        //         { key: "T.D.A", index: sheetFields.tda },
-        //         { key: "T.R.T", index: sheetFields.trt },
-        //         { key: "T.D.E", index: sheetFields.tde },
-        //         { key: "T.Z.R", index: sheetFields.tzr }
-        //     ];
-
-        //     const extractedData = fieldsMap.map(({ key, index }) => ({
-        //         key,
-        //         values: this.extractData(sheet, index, key, maxLength)?.map(obj => Object.values(obj)[0]) ?? []
-        //     }));
-
-        //     const length = Math.max(0, ...extractedData.map(({ values }) => values.length));
-
-        //     const response = Array.from({ length }, (_, i) => {
-        //         const obj: Record<string, any> = {};
-        //         extractedData.forEach(({ key, values }) => {
-        //             if (values[i] !== undefined) obj[key] = values[i];
-        //         });
-        //         return obj;
-        //     });
-
-        //     return response;
-        // } catch (error: any) {
-        //     throw new InternalServerErrorException(error);
-        // }
     }
 
     private async streamToBuffer(stream: Readable): Promise<Buffer> {

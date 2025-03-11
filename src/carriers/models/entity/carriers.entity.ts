@@ -12,7 +12,7 @@ export class CarriersEntity {
     @Column({ nullable: false, name: 'nome', type: 'varchar' })
     name: string
 
-    @OneToMany(() => ReadingPatternEntity, (readingPattern) => readingPattern.carrier)
+    @OneToMany(() => ReadingPatternEntity, (readingPattern) => readingPattern.carrier, { onDelete: 'CASCADE' })
     readingPatterns: ReadingPatternEntity[]
 
 }

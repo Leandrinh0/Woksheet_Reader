@@ -25,12 +25,11 @@ export class CreateReadingPatternService {
             const currentReadingPattern = await this.readingPatternRepository.create(newReadingPattern);
 
             for (const item of readingPattern.fields) {
-                await this.createFieldValuesService.execute({ fieldName: item.fieldName, value: item.value, readingSheetId: currentReadingPattern.id })
+                await this.createFieldValuesService.execute({ fieldName: item.columnName, value: item.index, readingSheetId: currentReadingPattern.id })
             }
             return { message: "Sucesso!" }
         } catch (error: any) {
             throw new InternalServerErrorException(error)
         }
-
     }
 }
