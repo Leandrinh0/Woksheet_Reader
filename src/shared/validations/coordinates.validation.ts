@@ -9,13 +9,13 @@ class IsSpreadsheetCoordinateConstraint implements ValidatorConstraintInterface 
 
         const singleCoordinateRegex = /^[A-Z]{1,3}[1-9][0-9]*$/;
         const rangeCoordinateRegex = /^[A-Z]{1,3}[1-9][0-9]*-[A-Z]{1,3}[1-9][0-9]*$/;
-        const multipleRangesRegex = /^([A-Z]{1,3}[1-9][0-9]*-[A-Z]{1,3}[1-9][0-9]*\s?)+$/;
+        const multipleRangesRegex = /^([A-Z]{1,3}[1-9][0-9]*-[A-Z]{1,3}[1-9][0-9]*\s)+(?:[A-Z]{1,3}[1-9][0-9]*|[A-Z]{1,3}[1-9][0-9]*-[A-Z]{1,3}[1-9][0-9]*)$/;
 
         return singleCoordinateRegex.test(value) || rangeCoordinateRegex.test(value) || multipleRangesRegex.test(value);
     }
 
     defaultMessage(): string {
-        return "O valor deve ser uma coordenada válida de planilha, podendo ser apenas a coordenada inicial, um intervalo ou múltiplos intervalos separados por espaço. (ex: A1, A1-A10 ou A1-A10 A15-A20).";
+        return "O valor deve ser uma coordenada válida de planilha, podendo ser apenas a coordenada inicial, um intervalo ou múltiplos intervalos separados por espaço, sendo que apenas o último pode ser uma única coordenada. (ex: A1, A1-A10 ou A1-A10 A15-A20 A25).";
     }
 }
 

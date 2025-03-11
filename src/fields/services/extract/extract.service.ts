@@ -28,21 +28,26 @@ export class ExtractService {
     private getFinalCoordinates(str: string) {
         return this.extractCoordinates(str, /-([A-Z]{1,3}[1-9][0-9]*)$/);
     }
-
+    
     private extractData(sheet: XLSX.WorkSheet, fieldIndex: string | undefined, header: string, maxLength: number) {
         if (!fieldIndex) return undefined;
 
-        const initialIndex = this.getInitialCoordinates(fieldIndex);
-        const finalIndex = this.getFinalCoordinates(fieldIndex);
-        return XLSX.utils.sheet_to_json(sheet, {
-            range: `${initialIndex}:${finalIndex ? finalIndex : `${this.getHorizontalCoordinates(fieldIndex)}${maxLength + 10}`}`,
+        const coordinateGroups = fieldIndex.split(" ").map(coord => {
+            const initialIndex = this.getInitialCoordinates(coord);
+            const finalIndex = this.getFinalCoordinates(coord);
+            return `${initialIndex}:${finalIndex ? finalIndex : `${this.getHorizontalCoordinates(coord)}${maxLength + 10}`}`;
+        });
+
+        return coordinateGroups.flatMap(range => XLSX.utils.sheet_to_json(sheet, {
+            range,
             header: [header],
             blankrows: false
-        });
+        }));
     }
 
     async execute(file: any, readingPatternId: number) {
         try {
+            
             // Buscar padrão de leitura
             const readingPattern: ReadingPatternEntity = await this.findReadingPattern.execute(readingPatternId);
             if (!readingPattern) { throw new NotFoundException("Padrão de leitura não encontrado!") }

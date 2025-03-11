@@ -27,7 +27,7 @@ export class CreateReadingPatternService {
             for (const item of readingPattern.fields) {
                 await this.createFieldValuesService.execute({ fieldName: item.columnName, value: item.index, readingSheetId: currentReadingPattern.id })
             }
-            return { message: "Sucesso!" }
+            return currentReadingPattern.id
         } catch (error: any) {
             throw new InternalServerErrorException(error)
         }
